@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bbf.spider.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.bbf.spider.Product">
+        <id column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="proName" property="proName" jdbcType="VARCHAR"/>
+        <result column="brand" property="brand" jdbcType="VARCHAR"/>
+        <result column="pinyin" property="pinyin" jdbcType="VARCHAR"/>
+        <result column="ischufang" property="ischufang" jdbcType="INTEGER"/>
+        <result column="proGuiGe" property="proGuiGe" jdbcType="VARCHAR"/>
+        <result column="projx" property="projx" jdbcType="VARCHAR"/>
+        <result column="proUnit" property="proUnit" jdbcType="VARCHAR"/>
+        <result column="proPZWH" property="proPZWH" jdbcType="VARCHAR"/>
+        <result column="proCode" property="proCode" jdbcType="VARCHAR"/>
+        <result column="proUsable" property="proUsable" jdbcType="VARCHAR"/>
+        <result column="proMerchant" property="proMerchant" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="isMainSort" property="isMainSort" jdbcType="INTEGER"/>
+        <result column="proid" property="proid" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    pid,proName,brand,pinyin,ischufang,proGuiGe,projx,proUnit,proPZWH,proCode,proUsable,proMerchant,status,url,isMainSort,proid
+  </sql>
+    <select id="selectMainSort" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from productbak
+        where isMainSort = 1;
+    </select>
+
+    <insert id="insert" parameterType="com.bbf.spider.Product">
+    insert into productbak (
+    proName,
+    brand,
+    pinyin,
+    ischufang,
+    proGuiGe,
+    projx,
+    proUnit,
+    proPZWH,
+    proCode,
+    proUsable,
+    proMerchant,
+    status,
+    url,
+    isMainSort,
+    proid
+      )
+    values (
+    #{proName,jdbcType=VARCHAR},
+    #{brand,jdbcType=VARCHAR},
+    #{pinyin,jdbcType=VARCHAR},
+    #{ischufang,jdbcType=INTEGER},
+    #{proGuiGe,jdbcType=VARCHAR},
+    #{projx,jdbcType=VARCHAR},
+    #{proUnit,jdbcType=VARCHAR},
+    #{proPZWH,jdbcType=VARCHAR},
+    #{proCode,jdbcType=VARCHAR},
+    #{proUsable,jdbcType=VARCHAR},
+    #{proMerchant,jdbcType=VARCHAR},
+    #{status,jdbcType=INTEGER},
+    #{url,jdbcType=VARCHAR},
+    #{isMainSort,jdbcType=INTEGER},
+    #{proid,jdbcType=INTEGER}
+      )
+  </insert>
+</mapper>
